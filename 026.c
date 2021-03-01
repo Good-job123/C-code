@@ -1,42 +1,36 @@
-
 #include <stdio.h>
 
-char *my_strcpy(char *dest, const char *src) //返回类型是char*
+void print(int arr[], int sz)
 {
-  char *p = NULL; //指针须初始化,
-  if (dest == NULL || src == NULL)
-  {
-    return NULL;
-  }
-
-  p = dest;
-  //将目标串的地址存放在p地址中
-  while ((*dest = *src) != '\0') //将src中的字符串传给dest
-  {
-    dest++;
-    src++;
-  }
-  return p;
+  int i = 0;
+  for (i = 0; i < sz; i++)
+    printf("%d ", arr[i]);
 }
-int my_strlen(const char *p)
+
+int *move(int arr[], int k, int sz)
 {
-  int count = 0;
-  while (*p != '\0')
+  int j = 0;
+  for (j = k; j < sz; j++)
   {
-    p++;
-    count++;
+    arr[j] = arr[j + 1];
   }
-  return count;
+  return arr;
 }
 
 int main()
 {
-  char arr[] = "abcde";
-  char str[20] = {0};
-  my_strcpy(str, arr);
-  printf("%s\n", str);
+  int i = 0;
+  int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+  int sz = sizeof(arr) / sizeof(arr[0]);
+  for (i = 0; i < sz; i++)
+  {
+    if (arr[i] % 2 == 0) //判断是否为偶数
+    {
+      arr[sz] = arr[i]; //把i的值放在arr[sz-1]后面
+      move(arr, i, sz); //i后面的值依次往前移动一位
+    }
+  }
 
-  int len = my_strlen(str);
-  printf("%d\n", len);
+  print(arr, sz);
   return 0;
 }
