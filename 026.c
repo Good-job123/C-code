@@ -33,4 +33,3 @@ int main()
 
   print(arr, sz);
   return 0;
-}
